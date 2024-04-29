@@ -1,7 +1,5 @@
 # Lista de comandos
 
-## DJs
-
 ``` markdown
 Entre paréntsis se indica lo que hace el comando.
 
@@ -15,6 +13,8 @@ Los * pueden sustituirse por cualquier cantidad de caracteres. ejemplo: petici* 
 
 [Nick] debe sustituirse por el nick del usuario
 ```
+
+## DJs
 
 ### comandos de DJ
 
