@@ -1,7 +1,7 @@
 # Lista de comandos
 
 ``` markdown
-Entre paréntsis se indica lo que hace el comando.
+Entre paréntesis se indica lo que hace el comando.
 
 Los * pueden sustituirse por cualquier cantidad de caracteres. ejemplo: petici* -> petición, peticion, peticiones, etc. y se pueden añadir palabras extra.
 
