@@ -3,9 +3,12 @@
 ``` markdown
 Entre paréntesis se indica lo que hace el comando.
 
-Los * pueden sustituirse por cualquier cantidad de caracteres. ejemplo: petici* -> petición, peticion, peticiones, etc. y se pueden añadir palabras extra.
+Los * pueden sustituirse por cualquier cantidad de caracteres. ejemplo:
 
-/en cualquier orden/ las palabras pueden aparecer en cualquier orden en la frase y se pueden añadir palabra extra.
+- petici* -> petición, peticion, peticiones, etc. y se pueden añadir palabras extra.
+
+/en cualquier orden/ las palabras pueden aparecer en cualquier orden en la frase
+y se pueden añadir palabra extra.
 
 [bot] debe sustituirse por el nick del bot
 
