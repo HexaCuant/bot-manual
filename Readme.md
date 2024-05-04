@@ -43,6 +43,8 @@ y se pueden añadir palabra extra.
 
 [bot] recarga* (el bot sale del IRC) Aparte de [bot] y la palabra `recarga` puede añadirse cuaquier otra. ejemplo: [bot] salte a recargar un momento
 
+[bot] sal del canal (el bot sale del canal en el que se le envía el mensaje)
+
 ## Usuarios
 
 !petici [cantante-canción-dedicatoria] (hacer petición)

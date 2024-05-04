@@ -224,6 +224,14 @@ Ejemplos válidos:
 
 El bot se desconectará del IRC. Se podrá volver a conectar y que entre a los canales indicados en su configuración desde una página web de control del bot o ejecutándolo manualmente desde el servidor donde esté alojado.
 
+También se l e puede indicar que solo salga de un canal enviándole el mensae:
+
+- **Robot sal del canal"
+
+en el canal que se desea que abandone.
+
+Sin embargo esta orden es solo temporal ya que el bot se volverá a unir al canal de manera automática la siguiente vvez que reciba un PING del servidor. Esta  función hara que el bot vuelva a unirse al canal si por alguna razón ha salido, como a causa de un split, por ejemplo.
+
 ## Comandos generales
 
 Estos comandos pueden ser ejecutados por cualquier usuario y se responden en el canal donde se ejecutan
