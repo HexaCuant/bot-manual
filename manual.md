@@ -128,6 +128,8 @@ El DJ informa al bot que comienza a emitir. El bot envia un mensaje público de 
 
 Informa al bot que la emisión ha terminado y que la radio se pone en modo automático. El bot envía un mensaje a todos los canales indicando que la emisión es automática así como la URL donde se está produciendo.
 
+Si el DJ en emisión se ausenta del canal más de 10 minutos, el bot pasará la emisión a automática.
+
 ### Abrir peticiones
 
 Cuando un DJ desea que los usuarios puedan realizar peticiones de canciones debe indicarlo así en un mensaje subjetivo. El mensaje debe empezar por `/me` y contener alguna forma del verbo `abrir` y la palabra `petición`, con cualquier combinación de mayúsculas, en singular o plural y con o sin acento:
