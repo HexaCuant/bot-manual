@@ -31,7 +31,7 @@ y se pueden añadir palabra extra.
 
 /me cierr\* petici\* (cerrar peticiones-caracteres mínimos)
 
-!suena [número] Menaje de petición en emisión
+!suena [número] Mensaje de petición en emisión
 
 !petlista (lista de peticiones pendientes)
 
