@@ -228,11 +228,11 @@ El bot se desconectará del IRC. Se podrá volver a conectar y que entre a los c
 
 También se l e puede indicar que solo salga de un canal enviándole el mensae:
 
-- **Robot sal del canal"
+- **Robot sal del canal**
 
 en el canal que se desea que abandone.
 
-Sin embargo esta orden es solo temporal ya que el bot se volverá a unir al canal de manera automática la siguiente vvez que reciba un PING del servidor. Esta  función hara que el bot vuelva a unirse al canal si por alguna razón ha salido, como a causa de un split, por ejemplo.
+Sin embargo esta orden es solo temporal ya que el bot se volverá a unir al canal de manera automática la siguiente vez que reciba un PING del servidor. Esta función hará que el bot vuelva a unirse al canal si por alguna razón ha salido, como a causa de un split, por ejemplo.
 
 ## Comandos generales
 
