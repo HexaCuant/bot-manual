@@ -277,7 +277,7 @@ Ya que todos ellos contienen la palabra horóscopo, el signo zodiacal y el nick 
 
 El bot escribe mensajes todos los canales indicando la URL de la radio y el nick del DJ que se encuentra en emisión (el que previamente ha ejecutado el comando `!emito`) y el estado de las peticiones.
 
-En el cnal de la radio el bot también pondrá un enlace a la web de la radio.
+En el canal de la radio el bot también pondrá un enlace a la web de la radio.
 
 ## "Bugs" or "Features"
 
