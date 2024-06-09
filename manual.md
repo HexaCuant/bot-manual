@@ -277,6 +277,8 @@ Ya que todos ellos contienen la palabra horóscopo, el signo zodiacal y el nick 
 
 El bot escribe mensajes todos los canales indicando la URL de la radio y el nick del DJ que se encuentra en emisión (el que previamente ha ejecutado el comando `!emito`) y el estado de las peticiones.
 
+En el cnal de la radio el bot también pondrá un enlace a la web de la radio.
+
 ## "Bugs" or "Features"
 
 Pueden darse situaciones erróneas debidas a la flexibilidad de los comandos del bot. Por ejemplo si aparece el nick del bot y algún derivado de la palabra `petición` en un mensaje a cualquier otro usuario el bot responderá indicando cómo se hace una petición, aunque no se le haya preguntado. Es el precio que hay que pagar por la flexibilidad de los comandos. A su vez esto hace al bot mas **humano**. ¡Nadie es perfecto!
