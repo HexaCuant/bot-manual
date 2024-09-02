@@ -218,7 +218,7 @@ Inactiva la limitación de peticiones
 
 El límite, si existe, se restablece al terminar la emisión
 
-
+Los comandos de límite solo funcionan en una conversación privada con el bot y el límite se puede alterar en cualquier momento dentro de la misma emisión. El bot mostrará en el chat general información sobre las peticiones que lleva cada usuario y avisará cuando se alcance o se supere el número máximo.
 
 ## Ayuda para peticiones
 
