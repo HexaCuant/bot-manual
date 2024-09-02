@@ -45,6 +45,10 @@ y se pueden añadir palabra extra.
 
 [bot] sal del canal (el bot sale del canal en el que se le envía el mensaje)
 
+!limite establece el límite de peticiones por usuario
+
+!muestralimite muestra el limite de peticiones por ususario
+
 ## Usuarios
 
 !petici [cantante-canción-dedicatoria] (hacer petición)
