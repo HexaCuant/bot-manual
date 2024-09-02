@@ -200,9 +200,25 @@ El bot ignorará en adelante las peticiones de ese Nick. Puede usarse para prote
 
 Retira a Nick de la lista de usuarios ignorados. A partir de ese momento el usuario puede realizar peticiones
 
-!iglista
+`!iglista`
 
 El bot muestra una lista de los usuarios ignorados.
+
+`!limite #`
+
+donde # se sustituye por el número máximo de peticiones por usuario
+
+`!muestralimite`
+
+muestra el número límite de peticiones por usuario para esta sesión
+
+`!limite 0`
+
+Inactiva la limitación de peticiones
+
+El límite, si existe, se restablece al terminar la emisión
+
+
 
 ## Ayuda para peticiones
 
