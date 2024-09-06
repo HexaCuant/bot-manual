@@ -130,6 +130,18 @@ Informa al bot que la emisión ha terminado y que la radio se pone en modo autom
 
 Si el DJ en emisión se ausenta del canal más de 10 minutos, el bot pasará la emisión a automática.
 
+### !recuento
+
+Si se ha establecido un límite al número de peticiones por usuario el bot muestra la lista de peticiones por ususario. Este comando se usa en una conversación privada con el bot
+
+### !-[número] [nick]
+
+Resta [número] al recuento de peticiones de [nick]. Puede usarse, por ejemplo, si el usuario ha realizado una petición errónea y se le anula, o para permitir que haga alguna petición extra.
+
+### !elimina [numero]
+
+Elimina la petición correspondiente a [número] de la lista de peticiones
+
 ### Abrir peticiones
 
 Cuando un DJ desea que los usuarios puedan realizar peticiones de canciones debe indicarlo así en un mensaje subjetivo. El mensaje debe empezar por `/me` y contener alguna forma del verbo `abrir` y la palabra `petición`, con cualquier combinación de mayúsculas, en singular o plural y con o sin acento:
