@@ -49,6 +49,12 @@ y se pueden añadir palabra extra.
 
 !muestralimite muestra el limite de peticiones por ususario
 
+!elimina [número] Elimina la petición 'número' de la lista de peticiones
+
+!recuento Muestra el recuento de peticiones por usuario
+
+!-[numero] [nick] (ej. !-2 fulanito) resta [número] al número de peticiones de [nick] (ej. resta 2 al número de peticiones de fulanito)
+
 ## Usuarios
 
 !petici [cantante-canción-dedicatoria] (hacer petición)
