@@ -53,7 +53,7 @@ y se pueden añadir palabra extra.
 
 !recuento Muestra el recuento de peticiones por usuario
 
-!-[numero] [nick] (ej. !-2 fulanito) resta [número] al número de peticiones de [nick] (ej. resta 2 al número de peticiones de fulanito)
+!-[numero] [nick] (ej. !-2 fulanito) resta [número] al número de peticiones de [nick] (ej. resta 2 al número de peticiones de fulanito). ESto puede usarse para permitir alguna petición "extra a un usuario"
 
 ## Usuarios
 
