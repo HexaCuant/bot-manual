@@ -108,6 +108,36 @@ Agrega a **nick** a la lista de DJs autorizados del canal.
 
 Este comando hace que el bot vuelva a leer su archivo de configuración. Permite realizar cambios en la configuración del bot con un editor externo y cargarlos sin tener que reiniciar al bot.
 
+### Comandos para manejo de mensajes programados
+
+Estos comandos permiten a los administradores configurar, visualizar y eliminar mensajes programados que el bot enviará automáticamente en los canales según un intervalo y rango horario definidos. Los comandos deben ejecutarse en una conversación privada con el bot.
+
+#### !mensaje
+
+Inicia un proceso interactivo para configurar un mensaje programado. El bot guiará al administrador paso a paso para definir:
+- El intervalo de tiempo en minutos para repetir el mensaje.
+- La hora de inicio (formato HH:MM).
+- La hora de fin (formato HH:MM).
+- El texto del mensaje a enviar.
+
+Una vez configurado, el mensaje se enviará a todos los canales del bot dentro del rango horario especificado y con la frecuencia indicada, siempre que haya actividad en el canal o el servidor envíe un PING.
+
+#### !vermensaje
+
+Muestra una lista de todos los mensajes programados en el sistema, sin importar quién los haya configurado. Para cada mensaje, se muestran:
+- El intervalo de repetición en minutos.
+- La hora de inicio y fin del rango horario.
+- El texto del mensaje.
+- El nick del administrador que lo creó.
+
+Esto permite a los administradores tener un control completo sobre los mensajes programados activos.
+
+#### !eliminarmensaje
+
+Inicia un proceso interactivo para eliminar un mensaje programado del sistema. El bot muestra una lista numerada de todos los mensajes programados, y el administrador debe seleccionar el número del mensaje que desea eliminar. Una vez eliminado, el mensaje se retira tanto de la lista en memoria como del archivo persistente, asegurando que no se vuelva a enviar.
+
+
+
 ## Comandos para DJs autorizados
 
 ### Invitar al bot a que se una a otro canal

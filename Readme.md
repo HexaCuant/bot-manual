@@ -79,11 +79,19 @@ y se pueden añadir palabra extra.
 
 !leelista (lee archivo de DJs)
 
-!borra [Nick] (borra Dj de l a lista)
+!borra [Nick] (borra Dj de la lista)
 
 !agrega [Nick] (agrega DJ a lista)
 
 !reconfigura (lee archivo de configuración)
+
+### Comandos para manejo de mensajes programados
+
+!mensaje (inicia la configuración de un mensaje programado con intervalo, hora de inicio, hora de fin y texto)
+
+!vermensaje (muestra todos los mensajes programados en el sistema)
+
+!eliminarmensaje (permite seleccionar y eliminar un mensaje programado del sistema)
 
 ## creador del bot
 
