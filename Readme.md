@@ -93,6 +93,11 @@ y se pueden añadir palabra extra.
 
 !eliminarmensaje (permite seleccionar y eliminar un mensaje programado del sistema)
 
+!agregacanalmensaje [canal] (agrega un canal a la lista de canales donde se envían mensajes programados)
+
+!vercanalesmensaje (muestra la lista de canales donde se envían mensajes programados)
+
+
 ## creador del bot
 
 !dentro

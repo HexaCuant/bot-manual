@@ -136,6 +136,13 @@ Esto permite a los administradores tener un control completo sobre los mensajes 
 
 Inicia un proceso interactivo para eliminar un mensaje programado del sistema. El bot muestra una lista numerada de todos los mensajes programados, y el administrador debe seleccionar el número del mensaje que desea eliminar. Una vez eliminado, el mensaje se retira tanto de la lista en memoria como del archivo persistente, asegurando que no se vuelva a enviar.
 
+#### !agregacanalmensaje [canal]
+
+Permite a los administradores agregar un nuevo canal a la lista de canales donde se envían los mensajes programados. El canal debe especificarse con el formato correcto (empezando con #, por ejemplo, #nuevo_canal). Si el canal ya está en la lista, el bot informará que no es necesario agregarlo. Este comando debe ejecutarse en una conversación privada con el bot.
+
+#### !vercanalesmensaje
+
+Muestra la lista actual de canales donde se envían los mensajes programados. Esto permite a los administradores verificar a qué canales están siendo dirigidos los mensajes automáticos. Este comando debe ejecutarse en una conversación privada con el bot.
 
 
 ## Comandos para DJs autorizados
