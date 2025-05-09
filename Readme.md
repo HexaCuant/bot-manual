@@ -97,6 +97,8 @@ y se pueden añadir palabra extra.
 
 !vercanalesmensaje (muestra la lista de canales donde se envían mensajes programados)
 
+!eliminacanalmensaje [canal] (elimina un canal de la lista de canales donde se envían mensajes programados)
+
 
 ## creador del bot
 

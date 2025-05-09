@@ -144,6 +144,11 @@ Permite a los administradores agregar un nuevo canal a la lista de canales donde
 
 Muestra la lista actual de canales donde se envían los mensajes programados. Esto permite a los administradores verificar a qué canales están siendo dirigidos los mensajes automáticos. Este comando debe ejecutarse en una conversación privada con el bot.
 
+#### !eliminacanalmensaje [canal]
+
+Permite a los administradores eliminar un canal de la lista de canales donde se envían los mensajes programados. El canal debe especificarse con el formato correcto (empezando con #, por ejemplo, #nuevo_canal). Si el canal no está en la lista, el bot informará que no puede ser eliminado. Este comando debe ejecutarse en una conversación privada con el bot.
+
+
 
 ## Comandos para DJs autorizados
 
