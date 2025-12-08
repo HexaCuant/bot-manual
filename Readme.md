@@ -101,7 +101,7 @@ y se pueden añadir palabra extra.
 
 ## IA y Configuración Avanzada
 
-!ia on/off (Activa o desactiva las respuestas de IA)
+!ia on/off (Activa o desactiva las respuestas de IA en el canal actual)
 
 !setmodel [modelo] (Cambia el modelo de IA en uso)
 

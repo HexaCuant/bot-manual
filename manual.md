@@ -20,7 +20,8 @@ El archivo de configuración es un json con los siguientes datos
 - DJ: el DJ que emite en el momento que entre el bot a su canal
 - radio: la URL de la radio del canal
 - saluda: lista de canales donde se desea que el bot salude a los usuarios que entran
-- ai_enabled: (true/false) activa o desactiva las respuestas de IA por defecto
+- ai_channels: lista de canales donde la IA está habilitada (ej. `["#canal1", "#canal2"]`)
+- ai_enabled: (obsoleto, usar ai_channels) (true/false) activa o desactiva las respuestas de IA por defecto
 - google_model: modelo de IA a utilizar (ej. "gemini-pro")
 - history_persist: (true/false) activa la persistencia del historial de chat
 - history_max_messages: número máximo de mensajes a guardar en el historial
@@ -66,9 +67,9 @@ El bot incorpora funcionalidades de IA generativa (Google Gemini) para responder
 
 ### !ia on / !ia off
 
-Activa o desactiva las respuestas automáticas de la IA.
-- `!ia on`: El bot responderá usando IA.
-- `!ia off`: El bot dejará de usar la IA.
+Activa o desactiva las respuestas automáticas de la IA en el canal actual.
+- `!ia on`: Activa la IA para el canal donde se ejecuta el comando (o PM).
+- `!ia off`: Desactiva la IA para el canal donde se ejecuta el comando (o PM).
 
 ## Comandos de Historial
 
