@@ -99,6 +99,23 @@ y se pueden añadir palabra extra.
 
 !eliminacanalmensaje [canal] (elimina un canal de la lista de canales donde se envían mensajes programados)
 
+## IA y Configuración Avanzada
+
+!ia on/off (Activa o desactiva las respuestas de IA)
+
+!setmodel [modelo] (Cambia el modelo de IA en uso)
+
+!listmodels (Descarga y guarda la lista de modelos de Google)
+
+!showmodels (Muestra los modelos guardados)
+
+!set_saludo_cooldown [segundos] (Cambia el tiempo de espera entre saludos)
+
+!get_saludo_cooldown (Muestra el tiempo de espera de saludos actual)
+
+!showconfig (Muestra la configuración actual del bot)
+
+!gethistory [maxLines] [canal|PM:nick|all] (Muestra el historial de chat)
 
 ## creador del bot
 

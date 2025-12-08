@@ -20,6 +20,10 @@ El archivo de configuración es un json con los siguientes datos
 - DJ: el DJ que emite en el momento que entre el bot a su canal
 - radio: la URL de la radio del canal
 - saluda: lista de canales donde se desea que el bot salude a los usuarios que entran
+- ai_enabled: (true/false) activa o desactiva las respuestas de IA por defecto
+- google_model: modelo de IA a utilizar (ej. "gemini-pro")
+- history_persist: (true/false) activa la persistencia del historial de chat
+- history_max_messages: número máximo de mensajes a guardar en el historial
   
 El archivo de configuración puede tener cualquier nombre pero se recomienda que sea el nick del bot con extensión `.json`.
 
@@ -55,6 +59,28 @@ para poder actuar en consecuencia
 El bot conecta con el servidor y espera a recibir los mensajes de bienvenida del servidor. Una vez recibidos se unirá al canal especificado en su configuración
 
 ## Comandos disponibles
+
+## Comandos de Inteligencia Artificial
+
+El bot incorpora funcionalidades de IA generativa (Google Gemini) para responder a los usuarios.
+
+### !ia on / !ia off
+
+Activa o desactiva las respuestas automáticas de la IA.
+- `!ia on`: El bot responderá usando IA.
+- `!ia off`: El bot dejará de usar la IA.
+
+## Comandos de Historial
+
+El bot mantiene un historial de conversaciones para dar contexto a la IA.
+
+### !gethistory [maxLines] <canal|PM:nick|all>
+
+Muestra el historial almacenado.
+- `maxLines`: (Opcional) Número de líneas a mostrar.
+- `canal`: Nombre del canal (ej. `#general`).
+- `PM:nick`: Historial privado con un usuario.
+- `all`: Todo el historial disponible.
 
 ## Comandos exclusivos del creador del bot
 
@@ -107,6 +133,36 @@ Agrega a **nick** a la lista de DJs autorizados del canal.
 ### !reconfigura
 
 Este comando hace que el bot vuelva a leer su archivo de configuración. Permite realizar cambios en la configuración del bot con un editor externo y cargarlos sin tener que reiniciar al bot.
+
+### Comandos de configuración avanzada e IA
+
+### !setmodel <modelo>
+
+Selecciona el modelo de IA a utilizar en tiempo de ejecución (ej. `gemini-pro`, `gemini-1.5-flash`).
+
+### !listmodels
+
+Descarga la lista de modelos disponibles desde Google y la guarda en el archivo `google_models.json`.
+
+### !showmodels
+
+Muestra la lista de modelos guardados en `google_models.json`.
+
+### !set_saludo_cooldown <segundos>
+
+Cambia y guarda la configuración del tiempo de espera (cooldown) entre saludos automáticos.
+
+### !get_saludo_cooldown
+
+Muestra el tiempo de espera actual configurado para los saludos.
+
+### !showconfig
+
+Muestra un resumen de la configuración actual del bot en tiempo de ejecución (se envía por privado).
+
+### !history config set ...
+
+Permite configurar la persistencia del historial.
 
 ### Comandos para manejo de mensajes programados
 
