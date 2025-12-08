@@ -382,6 +382,20 @@ Ejemplos válidos para un bot cuyo nick sea `Robot` son:
 
 ya que todos ellos contienen el nick del bot y la palabra refrán
 
+## Chistes
+
+El comando se ejecuta cuando un nick cualquiera envía un mensaje al canal con las siguientes características:
+
+- el mensaje contiene el nick del bot.
+- el mensaje contiene la palabra chiste.
+
+Esto permite solicitar un chiste al bot en lenguaje natural.
+
+Ejemplos válidos para un bot cuyo nick sea `Robot` son:
+
+- **Robot cuéntame un chiste**
+- **¿Sabes algún chiste, Robot?**
+
 ## Horóscopos
 
 Cuando se recibe un mensaje que contiene el nick del bot y la palabra `horoscopo`, con o sin acento, y el nombre de un signo zodiacal el bot responde con el horóscopo del día correspondiente a ese signo.
