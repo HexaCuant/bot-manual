@@ -83,6 +83,16 @@ Muestra el historial almacenado.
 - `PM:nick`: Historial privado con un usuario.
 - `all`: Todo el historial disponible.
 
+### !showhistory [canal|all]
+
+Muestra los historiales almacenados con formato detallado, incluyendo el rol (Bot o nick del usuario) para cada mensaje:
+- Sin argumentos en un canal: muestra el historial de ese canal
+- `!showhistory #canal`: muestra el historial del canal especificado
+- `!showhistory all`: muestra una lista de todos los canales con historial guardado
+- `!showhistory PM:nick`: muestra el historial de mensajes privados con ese usuario
+
+A diferencia de `!gethistory`, este comando formatea los mensajes mostrando claramente quién envió cada uno.
+
 ## Comandos exclusivos del creador del bot
 
 Estos comandos solo son operativos para el creador del bot y dentro de una conversación privada con el bot.
@@ -135,6 +145,21 @@ Agrega a **nick** a la lista de DJs autorizados del canal.
 
 Este comando hace que el bot vuelva a leer su archivo de configuración. Permite realizar cambios en la configuración del bot con un editor externo y cargarlos sin tener que reiniciar al bot.
 
+### !check
+
+Fuerza al bot a verificar su presencia en todos los canales configurados y reconectarse a aquellos de los que se haya desconectado (por ejemplo, tras un "split" de la red IRC). Este comando es útil cuando el bot ha perdido conexión con algún canal pero sigue conectado al servidor.
+
+### !repite <mensaje>
+
+Permite enviar un mensaje a todos los canales configurados como si fuera enviado directamente por el bot. Este comando debe ejecutarse en una conversación privada con el bot. Es útil para hacer anuncios generales en todos los canales simultáneamente.
+
+Ejemplo:
+```
+!repite La radio estará fuera de servicio por mantenimiento durante 1 hora
+```
+
+El bot enviará el mensaje "La radio estará fuera de servicio por mantenimiento durante 1 hora" a todos los canales en los que esté presente.
+
 ### Comandos de configuración avanzada e IA
 
 ### !setmodel <modelo>
@@ -148,6 +173,55 @@ Descarga la lista de modelos disponibles desde Google y la guarda en el archivo 
 ### !showmodels
 
 Muestra la lista de modelos guardados en `google_models.json`.
+
+### !econmodel
+
+Muestra información detallada sobre el modelo económico en uso actualmente. Este comando es útil para verificar qué modelo está siendo utilizado cuando se configura el modo automático de selección de modelo.
+
+### !help [grupo] / !ayuda [grupo]
+
+Sistema de ayuda contextual que muestra los comandos disponibles organizados por grupos:
+- **general**: Comandos básicos disponibles para todos los usuarios
+- **peticiones**: Comandos relacionados con peticiones de canciones
+- **dj**: Comandos exclusivos para DJs autorizados
+- **admin**: Comandos administrativos (solo administradores)
+- **ia**: Comandos de inteligencia artificial (solo administradores)
+- **history**: Comandos de gestión de historial (solo administradores)
+
+Sin especificar grupo, muestra los grupos disponibles según los permisos del usuario. Con un grupo específico (ej. `!help ia`), muestra todos los comandos de ese grupo con sus descripciones.
+
+### !clearhistory [canal|all]
+
+Limpia el historial de conversaciones almacenado:
+- Sin argumentos en un canal: limpia el historial de ese canal
+- `!clearhistory #canal`: limpia el historial del canal especificado
+- `!clearhistory all`: limpia todo el historial almacenado
+- `!clearhistory PM:nick`: limpia el historial de mensajes privados con ese usuario
+
+Este comando es útil para resetear el contexto de la IA o para borrar información sensible del historial.
+
+### !whitelist add|remove|show|save <#canal|PM:nick|all>
+
+Gestiona la lista blanca (whitelist) de canales y usuarios cuyos históricos se guardan:
+- `!whitelist show`: muestra la whitelist actual
+- `!whitelist add #canal`: añade un canal a la whitelist
+- `!whitelist add PM:nick`: añade mensajes privados de un usuario
+- `!whitelist add all`: añade todos los canales
+- `!whitelist remove #canal`: elimina un canal de la whitelist
+- `!whitelist save`: guarda la whitelist en el archivo de configuración
+
+Solo se guardan históricos de canales/usuarios en la whitelist cuando está activada esta funcionalidad.
+
+### Respuestas de IA mediante mención
+
+Cuando un mensaje en un canal (donde la IA está habilitada) contiene el nick del bot, este responderá usando inteligencia artificial generativa. El bot mantiene un historial de conversaciones para proporcionar contexto y respuestas coherentes.
+
+Ejemplos (asumiendo que el bot se llama "Robot"):
+- **Robot, ¿qué opinas sobre la música electrónica?**
+- **¿Puedes explicarme qué es un refrán, Robot?**
+- **Robot: ¿cuál es tu canción favorita?**
+
+Las respuestas pueden ser largas y se dividirán automáticamente en múltiples mensajes si es necesario.
 
 ### !set_saludo_cooldown <segundos>
 

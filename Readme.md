@@ -71,6 +71,36 @@ y se pueden añadir palabra extra.
 
 ## Administradores
 
+### Comandos de Inteligencia Artificial
+
+!ia on [canal] (activa respuestas IA en el canal especificado o el actual)
+
+!ia off [canal] (desactiva respuestas IA en el canal especificado o el actual)
+
+!setmodel [modelo] (selecciona el modelo IA a utilizar, ej: gemini-2.0-flash)
+
+!listmodels (descarga y guarda la lista de modelos disponibles de Google)
+
+!showmodels (muestra los modelos guardados en google_models.json)
+
+!econmodel (muestra información sobre el modelo económico en uso)
+
+!gethistory [maxLines] [canal|PM:nick|all] (muestra el historial de conversaciones)
+
+!showhistory [canal|all] (muestra los historiales almacenados con formato detallado)
+
+!clearhistory [canal|all] (limpia el historial del canal especificado o todo)
+
+!whitelist add|remove|show|save [#canal|PM:nick|all] (gestiona la whitelist de históricos)
+
+!history config set [opción] [valor] (configura la persistencia de históricos)
+
+!help [grupo] (muestra ayuda contextual por grupos: general, peticiones, dj, admin, ia, history)
+
+!ayuda [grupo] (alias de !help)
+
+[bot] [mensaje] (si el mensaje contiene el nick del bot, responde usando IA)
+
 ### Comandos en privado
 
 !lista (muestra listado de DJs)
@@ -84,6 +114,12 @@ y se pueden añadir palabra extra.
 !agrega [Nick] (agrega DJ a lista)
 
 !reconfigura (lee archivo de configuración)
+
+!check (fuerza la verificación y reconexión a los canales configurados)
+
+!repite [mensaje] (envía un mensaje a todos los canales desde el bot)
+
+!showconfig (muestra un resumen de la configuración actual del bot)
 
 ### Comandos para manejo de mensajes programados
 
