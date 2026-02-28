@@ -175,4 +175,6 @@ y se pueden añadir palabra extra.
 
 !info
 
-!join [canal]
+### Comandos de administradores
+
+!join [canal] (hace que el bot se una a un canal, solo administradores)

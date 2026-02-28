@@ -160,7 +160,7 @@ El comando `!info` muestra información sobre el DJ que está emitiendo, el esta
 
 ### !join [canal]
 
-El comando `!join [canal]` permite al creador del bot indicarle que se una a un canal cualquiera. No es necesario que el creador del bot se encuentre en ese canal ni que tenga privilegios en él y si el canal no existe se creará uno temporal en el que el bot será el moderador al ser el usuario que crea el canal.
+El comando `!join [canal]` permite a los administradores del bot indicarle que se una a un canal cualquiera. No es necesario que el administrador se encuentre en ese canal ni que tenga privilegios en él y si el canal no existe se creará uno temporal en el que el bot será el moderador al ser el usuario que crea el canal.
 
 ## Comandos para admistradores del bot
 
@@ -316,7 +316,7 @@ radio: https://zeno.fm/radio/el_desvan_musical_radio/
 - Responde siempre por privado y devuelve solo los grupos/comandos que el solicitante puede usar según su rol.
 - Grupos disponibles por defecto:
 	- `general`: comandos generales accesibles a todos (p. ej. `!radio`, `!peticion`)
-	- `dj`: comandos para DJs autorizados (p. ej. `!emito`, `!auto`, `!join`)
+	- `dj`: comandos para DJs autorizados (p. ej. `!emito`, `!auto`)
 	- `ia`: comandos para IA (p. ej. `!ia on`, `!ia off`)
 	- `prompt`: comandos para gestionar el prompt de sistema (p. ej. `!prompt show`, `!prompt set`)
 	- `history`: comandos para historial (p. ej. `!gethistory`, `!history config`)
@@ -413,7 +413,7 @@ Para enviar una invitación al bot debe ejecutar el comando `/invite` seguido de
 
 Este comando no es exclusivo del bot sino que se trata de un comando del IRC. El bot solo está programado para aceptarlo si se envía desde un nick autorizado. Al tratarse de un comando del IRC es posible que el nick necesite ser moderador del canal al que invita al bot, o tener algún otro tipo de privilegios en ese canal.
 
-El creador del bot puede saltarse estas restricciones del IRC usando el comando `!join` descrito anteriormente.
+Los administradores del bot pueden saltarse estas restricciones del IRC usando el comando `!join` descrito anteriormente.
 
 ### !emito
 

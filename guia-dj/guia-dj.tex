@@ -168,8 +168,7 @@ Para gestionar usuarios problemáticos durante la emisión:
 \toprule
 \textbf{Comando} & \textbf{Descripción} \\
 \midrule
-\cmd{!join \param{canal}} & Hace que el bot se una al canal indicado (PM). \\[0.3em]
-\cmd{/invite \param{bot} \param{canal}} & Invita al bot al canal (comando IRC estándar). \\[0.3em]
+\cmd{/invite \param{bot} \param{canal}} & Invita al bot al canal (comando IRC estándar). Necesitas ser moderador del canal destino. \\[0.3em]
 \bot{} \cmd{sal del canal} & El bot abandona el canal actual. Es temporal: se re-une en el siguiente chequeo periódico o PING. \\[0.3em]
 \bot{} \cmd{recarga} & El bot se desconecta del IRC. El crontab lo reinicia automáticamente en $\sim\!1$~minuto. Se puede añadir texto extra, ej.\ ``\texttt{c3pO salte a recargar un momento}''. \\
 \bottomrule
@@ -270,9 +269,9 @@ La mayoría de los comandos de gestión (\cmd{!petlista}, \cmd{!suena}, \cmd{!el
 
 \textbf{Control del bot}
 \begin{itemize}[nosep,leftmargin=1em]
-  \item \cmd{!join \param{canal}} — unir a canal
   \item \bot{} \texttt{sal del canal}
   \item \bot{} \texttt{recarga} — reiniciar
+  \item \cmd{/invite} \param{bot} — invitar
 \end{itemize}
 
 \textbf{General}
