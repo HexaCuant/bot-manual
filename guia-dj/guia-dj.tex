@@ -1,0 +1,289 @@
+\documentclass[a4paper,11pt]{article}
+
+% --- Paquetes ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{microtype}
+
+\geometry{margin=2cm, top=2.5cm, bottom=2.5cm}
+
+% --- Colores ---
+\definecolor{cmdcolor}{HTML}{2E86C1}
+\definecolor{paramcolor}{HTML}{E67E22}
+\definecolor{notecolor}{HTML}{7D3C98}
+\definecolor{sectioncolor}{HTML}{1A5276}
+\definecolor{warncolor}{HTML}{C0392B}
+
+% --- Formato de secciones ---
+\titleformat{\section}{\Large\bfseries\color{sectioncolor}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{sectioncolor!80}}{}{0em}{}
+
+% --- Comando para formatear comandos ---
+\newcommand{\cmd}[1]{\texttt{\color{cmdcolor}\bfseries #1}}
+\newcommand{\param}[1]{\texttt{\color{paramcolor}<#1>}}
+\renewcommand{\bot}[0]{\texttt{[bot]}}
+\newcommand{\nota}[1]{\par\smallskip{\small\color{notecolor}\textbf{Nota:} #1}\par}
+\newcommand{\aviso}[1]{\par\smallskip{\small\color{warncolor}\textbf{¡Atención!} #1}\par}
+
+% --- Encabezado y pie ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{sectioncolor}Guía rápida para DJs — Bot IRC}
+\fancyhead[R]{\small\color{sectioncolor}\thepage}
+\fancyfoot[C]{\small\color{gray}Febrero 2026 — El Desván Musical}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Documento ---
+\begin{document}
+
+% === Portada ===
+\begin{center}
+  {\Huge\bfseries\color{sectioncolor} Guía Rápida para DJs}\\[0.5em]
+  {\Large Bot IRC — El Desván Musical}\\[1.5em]
+  {\large Referencia abreviada de comandos y procedimientos}\\[0.5em]
+  {\color{gray}\today}
+\end{center}
+
+\vspace{1em}
+
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{
+\textbf{Convenciones de este documento:}
+\begin{itemize}[nosep,leftmargin=1.5em]
+  \item \bot{} debe sustituirse por el nick del bot (ej.\ \texttt{c3pO}).
+  \item \param{param} indica un parámetro que debes rellenar.
+  \item Los comandos con \cmd{!} se envían como mensaje normal.
+  \item Los comandos con \cmd{/me} se envían como acción de IRC.
+  \item Los comandos marcados como \textbf{PM} se ejecutan en privado con el bot.
+\end{itemize}
+}}
+\end{center}
+
+\vspace{0.5em}
+
+% ============================================================
+\section{Flujo de una emisión}
+% ============================================================
+
+El flujo típico de una emisión es:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Iniciar emisión:} \cmd{!emito}
+  \item \textbf{Abrir peticiones:} \cmd{/me abre peticiones} (desde el canal)
+  \item \textbf{Gestionar peticiones:} ver, poner, eliminar peticiones según llegan
+  \item \textbf{Cerrar peticiones:} \cmd{/me cierra peticiones}
+  \item \textbf{Finalizar emisión:} \cmd{!auto}
+\end{enumerate}
+
+\nota{Si el DJ abandona el canal (PART/QUIT), el bot espera 10 minutos. Si no regresa, activa automáticamente el modo \texttt{auto}.}
+
+% ============================================================
+\section{Comandos de emisión}
+% ============================================================
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!emito} & Registra tu nick como DJ activo. Anuncia en todos los canales ``Feliz emisión \param{nick}''. Se guarda en la configuración. \\[0.5em]
+\cmd{!auto} & Finaliza la emisión. Cambia el DJ a ``Auto'', anuncia el modo automático con la URL de la radio, limpia todas las peticiones, resetea el límite a~0 y elimina los archivos de peticiones. \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Peticiones}
+% ============================================================
+
+\subsection{Abrir y cerrar peticiones}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{/me abre peticiones} & Abre las peticiones. Solo funciona si eres el DJ activo. El mensaje debe contener alguna forma de ``abrir'' y ``petición''. El bot anuncia la apertura y la sintaxis para pedir en todos los canales. \\[0.5em]
+\cmd{/me cierra peticiones} & Cierra las peticiones. El mensaje debe contener ``cerrar'' y ``petición''. La cola \textbf{no} se borra (puedes seguir usando \cmd{!suena}). \\
+\bottomrule
+\end{tabularx}
+
+\nota{Los usuarios hacen peticiones con \cmd{!peticion cantante-canción-dedicatoria}. El bot te las envía por PM numeradas.}
+
+\subsection{Gestión de la cola de peticiones}
+
+Todos estos comandos se ejecutan \textbf{por PM} al bot.
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!petlista} & Muestra la lista de peticiones pendientes (numeradas). \\[0.3em]
+\cmd{!suena \param{N}} & Anuncia la petición número $N$ como ``Está sonando\ldots'' en todos los canales y la elimina de la cola. \\[0.3em]
+\cmd{!elimina \param{N}} & Elimina la petición número $N$ de la cola de forma silenciosa (sin anuncio público). \\[0.3em]
+\cmd{!recuento} & Muestra el recuento de peticiones por usuario. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Límites de peticiones por usuario}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!limite \param{N}} & Establece el límite máximo de peticiones por usuario a $N$. Se anuncia en los canales. Con $N=0$ se elimina el límite. Se guarda en la configuración. \\[0.3em]
+\cmd{!muestralimite} & Muestra el límite actual. \\[0.3em]
+\cmd{!-\param{N} \param{nick}} & Resta $N$ al contador de peticiones de \param{nick}. Útil para anular una petición o conceder una extra. Ejemplo: \cmd{!-2 fulanito} \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Ignorar y readmitir usuarios}
+
+Para gestionar usuarios problemáticos durante la emisión:
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!ignora \param{nick}} & Ignora las peticiones futuras de \param{nick}. \\[0.3em]
+\cmd{!admite \param{nick}} & Readmite a \param{nick} (deja de ignorarlo). \\[0.3em]
+\cmd{!iglista} & Muestra la lista de usuarios ignorados. \\
+\bottomrule
+\end{tabularx}
+
+\aviso{La lista de ignorados es volátil: se pierde al reiniciar el bot.}
+
+% ============================================================
+\section{Control del bot}
+% ============================================================
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!join \param{canal}} & Hace que el bot se una al canal indicado (PM). \\[0.3em]
+\cmd{/invite \param{bot} \param{canal}} & Invita al bot al canal (comando IRC estándar). \\[0.3em]
+\bot{} \cmd{sal del canal} & El bot abandona el canal actual. Es temporal: se re-une en el siguiente chequeo periódico o PING. \\[0.3em]
+\bot{} \cmd{recarga} & El bot se desconecta del IRC. El crontab lo reinicia automáticamente en $\sim\!1$~minuto. Se puede añadir texto extra, ej.\ ``\texttt{c3pO salte a recargar un momento}''. \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Información de la radio}
+% ============================================================
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!radio} / \cmd{!link} & Muestra en todos los canales: enlace web de la radio, enlace de streaming, DJ actual y estado de las peticiones (abiertas/cerradas). \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Entretenimiento y utilidades}
+% ============================================================
+
+Estos comandos están disponibles para todos los usuarios y pueden ser útiles durante la emisión:
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\bot{} \texttt{refrán} & El bot cuenta un refrán. El mensaje debe contener el nick del bot y la palabra ``refrán'' (o ``refran''), en cualquier orden. Ej.: ``\textit{c3pO dinos un refrán}''. \\[0.3em]
+\bot{} \texttt{chiste} & El bot cuenta un chiste. Ej.: ``\textit{Cuéntame un chiste c3pO}''. \\[0.3em]
+\bot{} \texttt{horóscopo} \param{signo} & El bot da el horóscopo del día para el signo zodiacal indicado. Ej.: ``\textit{c3pO horóscopo libra}''. \\[0.3em]
+\cmd{!help} / \cmd{!ayuda} & Muestra los grupos de ayuda disponibles. Con \cmd{!help \param{grupo}} se listan los comandos de ese grupo (responde por PM). Grupos visibles para DJs: \texttt{general}, \texttt{peticiones}, \texttt{dj}. \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Interacción con la IA}
+% ============================================================
+
+En los canales donde la IA está activada, puedes interactuar con el bot mencionando su nick:
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{En canal:} escribe un mensaje que contenga el nick del bot y este responderá usando inteligencia artificial. Ej.: ``\textit{c3pO ¿qué opinas de la canción?}''
+  \item \textbf{Por PM:} al ser DJ autorizado, puedes enviar mensajes privados al bot. Si el mensaje no empieza por \cmd{!}, el bot lo interpreta como una consulta a la IA.
+\end{itemize}
+
+\nota{Los DJs no pueden configurar la IA (modelo, prompt, canales). Esos ajustes son exclusivos de administradores.}
+
+% ============================================================
+\section{Mensajes privados (PM)}
+% ============================================================
+
+Como DJ autorizado, el bot acepta tus mensajes privados. Los usuarios normales no pueden escribir al bot por privado.
+
+La mayoría de los comandos de gestión (\cmd{!petlista}, \cmd{!suena}, \cmd{!elimina}, \cmd{!ignora}, etc.) se ejecutan por PM para no saturar el canal.
+
+% ============================================================
+\section{Referencia rápida}
+% ============================================================
+
+\begin{multicols}{2}
+\small
+
+\textbf{Emisión}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!emito} — iniciar emisión
+  \item \cmd{!auto} — finalizar emisión
+\end{itemize}
+
+\textbf{Peticiones (canal)}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{/me abre peticiones}
+  \item \cmd{/me cierra peticiones}
+\end{itemize}
+
+\textbf{Peticiones (PM)}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!petlista} — ver cola
+  \item \cmd{!suena \param{N}} — poner petición
+  \item \cmd{!elimina \param{N}} — borrar petición
+  \item \cmd{!recuento} — conteo por usuario
+\end{itemize}
+
+\textbf{Límites (PM)}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!limite \param{N}} — fijar límite
+  \item \cmd{!muestralimite} — ver límite
+  \item \cmd{!-\param{N} \param{nick}} — restar
+\end{itemize}
+
+\columnbreak
+
+\textbf{Ignorar/admitir (PM)}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!ignora \param{nick}}
+  \item \cmd{!admite \param{nick}}
+  \item \cmd{!iglista}
+\end{itemize}
+
+\textbf{Control del bot}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!join \param{canal}} — unir a canal
+  \item \bot{} \texttt{sal del canal}
+  \item \bot{} \texttt{recarga} — reiniciar
+\end{itemize}
+
+\textbf{General}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!radio} — info de la radio
+  \item \bot{} \texttt{refrán}
+  \item \bot{} \texttt{chiste}
+  \item \bot{} \texttt{horóscopo} \param{signo}
+  \item \cmd{!help} / \cmd{!ayuda}
+\end{itemize}
+
+\end{multicols}
+
+\end{document}
