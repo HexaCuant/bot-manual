@@ -1,0 +1,424 @@
+\documentclass[a4paper,10pt]{article}
+
+% --- Paquetes ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage{tikz}
+\usepackage{needspace}
+
+\geometry{margin=1.8cm, top=2.5cm, bottom=2.5cm}
+\setlength{\parindent}{0pt}
+
+% --- Colores ---
+\definecolor{cmdcolor}{HTML}{2E86C1}
+\definecolor{paramcolor}{HTML}{E67E22}
+\definecolor{notecolor}{HTML}{7D3C98}
+\definecolor{sectioncolor}{HTML}{1A5276}
+\definecolor{warncolor}{HTML}{C0392B}
+\definecolor{sectionbg}{HTML}{D6EAF8}
+\definecolor{persistcolor}{HTML}{27AE60}
+\definecolor{volatilecolor}{HTML}{E74C3C}
+
+% --- Formato de secciones ---
+\titleformat{\section}{\Large\bfseries\color{sectioncolor}}{}{0em}{%
+  \needspace{5\baselineskip}%
+  \tikz[overlay]\fill[sectionbg, rounded corners=2pt]
+    (-2pt,-3pt) rectangle (\textwidth+2pt,\baselineskip+2pt);%
+}
+\titleformat{\subsection}{\large\bfseries\color{sectioncolor!80}}{}{0em}{%
+  \needspace{3\baselineskip}%
+}
+
+% --- Comandos personalizados ---
+\newcommand{\cmd}[1]{\texttt{\color{cmdcolor}\bfseries #1}}
+\newcommand{\param}[1]{\texttt{\color{paramcolor}<#1>}}
+\renewcommand{\bot}[0]{\texttt{[bot]}}
+\newcommand{\nota}[1]{\par\smallskip{\small\color{notecolor}\textbf{Nota:} #1}\par}
+\newcommand{\aviso}[1]{\par\smallskip{\small\color{warncolor}\textbf{¡Atención!} #1}\par}
+\newcommand{\persiste}{{\scriptsize\color{persistcolor}\textbf{[JSON]}}}
+\newcommand{\volat}{{\scriptsize\color{volatilecolor}\textbf{[volátil]}}}
+
+% --- Encabezado y pie ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{sectioncolor}Guía de administración — Bot IRC}
+\fancyhead[R]{\small\color{sectioncolor}\thepage}
+\fancyfoot[C]{\small\color{gray}Febrero 2026 — El Desván Musical}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Documento ---
+\begin{document}
+
+% === Portada ===
+\begin{center}
+  {\Huge\bfseries\color{sectioncolor} Guía de Administración}\\[0.5em]
+  {\Large Bot IRC — El Desván Musical}\\[1.5em]
+  {\large Referencia completa de comandos administrativos}\\[0.5em]
+  {\color{gray}\today}\\[1em]
+  {\small\itshape Autor: hexadecimal}
+\end{center}
+
+\vspace{0.5em}
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\textbf{Convenciones:}
+\begin{itemize}[nosep,leftmargin=1.5em]
+  \item \bot{} = nick del bot (ej.\ \texttt{c3pO}).
+  \item \param{param} = parámetro que debes rellenar.
+  \item \persiste\ = se guarda en el archivo JSON de configuración.
+  \item \volat\ = solo en memoria; se pierde al reiniciar.
+  \item Los comandos se envían por \textbf{PM} salvo que se indique otra cosa.
+  \item Admins actuales: \texttt{hexadecimal}, \texttt{Magari} (definidos en el código).
+\end{itemize}
+}}
+\end{center}
+
+\vspace{0.5em}
+
+% ============================================================
+\section{Configuración y recarga}
+% ============================================================
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!reconfigura} & Recarga la configuración desde el archivo JSON sin reiniciar el bot. Aplica en caliente las claves configurables (ver lista abajo). Responde por PM con un resumen de lo recargado. \\[0.3em]
+\cmd{!showconfig} & Muestra un resumen de la configuración activa: canales, saludos, cooldown, canales IA, modelo IA, historial, DJ, límite, radio, nickmode, aliases. Responde por PM. \\[0.3em]
+\cmd{!check} & Fuerza al bot a verificar presencia en todos los canales configurados y re-unirse a los que haya perdido (ej.\ tras un netsplit). \volat \\
+\bottomrule
+\end{tabularx}
+
+\begin{sloppypar}
+\nota{Claves recargables con \cmd{!reconfigura}: \texttt{channels}, \texttt{saluda}, \texttt{saludo\_cooldown\_seconds}, \texttt{ai\_enabled}/\texttt{ai\_channels}, \texttt{ai\_model}/\texttt{google\_model}, \texttt{system\_prompt\_lines}, \texttt{history\_max\_messages}, \texttt{history\_dir}, \texttt{history\_persist}, \texttt{history\_whitelist}, \texttt{DJ}, \texttt{limite}, \texttt{radio}, \texttt{nick\_match\_mode}, \texttt{nick\_aliases}.\\ \textbf{No recargables} (requieren reinicio): \texttt{server}, \texttt{port}, \texttt{nickname}.}
+\end{sloppypar}
+
+% ============================================================
+\section{Inteligencia artificial}
+% ============================================================
+
+\subsection{Activación por canal}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!ia status} & Muestra los canales con IA activa y el modelo en uso. \\[0.3em]
+\cmd{!ia on} \param{canal} & Activa la IA en el canal indicado (o el actual si se omite). \persiste \\[0.3em]
+\cmd{!ia off} \param{canal} & Desactiva la IA en el canal indicado (o el actual). \persiste \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Gestión de modelos}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!setmodel \param{modelo}} & Cambia el modelo IA en tiempo de ejecución. Soporta prefijo \texttt{ollama:} para modelos Ollama, o nombre de modelo Google Gemini. Se valida antes de aplicar. \volat \\[0.3em]
+\cmd{!listmodels} & Descarga la lista de modelos de Google y la guarda en \texttt{google\_models.json}. Limpia la caché de modelos económicos. \\[0.3em]
+\cmd{!showmodels} & Muestra los modelos guardados en \texttt{google\_models.json} (nombre, displayName, descripción). \\[0.3em]
+\cmd{!econmodel} & Auto-selecciona un modelo económico/gratuito de la lista y lo establece como activo. \volat \\
+\bottomrule
+\end{tabularx}
+
+\nota{Para persistir un modelo cambiado con \cmd{!setmodel}, edita el JSON y usa \cmd{!reconfigura}, o bien modifica la clave \texttt{ai\_model} directamente en el archivo de configuración.}
+
+\subsection{Prompt del sistema}
+
+El prompt es una lista numerada de instrucciones. La variable \texttt{\{nickname\}} se sustituye por el nick del bot en tiempo de ejecución.
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!prompt show} & Muestra todas las líneas del prompt numeradas. \\[0.3em]
+\cmd{!prompt set \param{N} \param{texto}} & Reemplaza la línea $N$ con el nuevo texto. Muestra antes/después. \volat \\[0.3em]
+\cmd{!prompt add \param{texto}} & Añade una línea nueva al final del prompt. \volat \\[0.3em]
+\cmd{!prompt del \param{N}} & Elimina la línea número $N$. \volat \\[0.3em]
+\cmd{!prompt reset} & Restaura las instrucciones por defecto (\texttt{DEFAULT\_SYSTEM\_PROMPT\_LINES}). \volat \\[0.3em]
+\cmd{!prompt save} & Escribe las instrucciones actuales en el archivo JSON. \persiste \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Historiales e IA}
+% ============================================================
+
+\subsection{Consulta y limpieza}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!gethistory} [\param{N}] \param{destino} & Muestra las últimas $N$ entradas (defecto 20) del historial indicado. \param{destino} puede ser: \texttt{\#canal} (historial de un canal), \texttt{PM:nick} (historial de un PM) o \texttt{all} (todos). \\[0.3em]
+\cmd{!showhistory} [\param{canal}|\texttt{all}] & Muestra historiales con formato \texttt{Rol: texto}. Con \texttt{all} lista los canales con historial. \\[0.3em]
+\cmd{!clearhistory} [\param{canal}|\texttt{all}] & Limpia el historial del canal, PM o todos. Si hay persistencia activa, también del disco. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Whitelist de historiales}
+
+Controla qué canales/PMs tienen historial registrado.
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!whitelist add \param{clave}} & Añade \texttt{\#canal}, \texttt{PM:nick} o \texttt{all} a la whitelist. \volat \\[0.3em]
+\cmd{!whitelist remove \param{clave}} & Elimina una clave de la whitelist. \volat \\[0.3em]
+\cmd{!whitelist show} & Muestra la whitelist actual. \\[0.3em]
+\cmd{!whitelist save} & Guarda la whitelist en el JSON. \persiste \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Configuración de persistencia}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!history config get} & Muestra: \texttt{max\_messages}, \texttt{persist}, \texttt{dir}, whitelist, disponibilidad de persistencia. \\[0.3em]
+\cmd{!history config set max\_messages \param{N}} & Establece el máximo de mensajes en historial. \persiste \\[0.3em]
+\cmd{!history config set persist \param{true|false}} & Activa/desactiva la persistencia a disco. \persiste \\[0.3em]
+\cmd{!history config set dir \param{ruta}} & Cambia el directorio de persistencia de historiales. \persiste \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Gestión de DJs (autorizados)}
+% ============================================================
+
+La lista de DJs autorizados se mantiene en memoria y opcionalmente en \texttt{autorizados.json}.
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!lista} & Lista todos los DJs autorizados. \\[0.3em]
+\cmd{!agrega \param{nick}} & Añade un nick a la lista de DJs. \volat\ — el bot recuerda usar \cmd{!guardalista}. \\[0.3em]
+\cmd{!borra \param{nick}} & Elimina un nick de la lista de DJs. \volat \\[0.3em]
+\cmd{!guardalista} & Guarda la lista de DJs en \texttt{autorizados.json}. \persiste \\[0.3em]
+\cmd{!leelista} & Recarga la lista desde \texttt{autorizados.json}. \\
+\bottomrule
+\end{tabularx}
+
+\aviso{Si agregas o borras DJs sin usar \cmd{!guardalista}, los cambios se pierden al reiniciar.}
+
+% ============================================================
+\section{Gestión de canales}
+% ============================================================
+
+Tres niveles de control sobre la presencia del bot en canales:
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!join \param{\#canal}} & El bot se une al canal. Solo se añade a la lista en memoria. \volat \\[0.3em]
+\cmd{!addcanal \param{\#canal}} & El bot se une al canal y lo guarda en la configuración. \persiste \\[0.3em]
+\cmd{!leave \param{\#canal}} & El bot abandona el canal, lo elimina de la configuración y limpia su historial. \persiste \\[0.3em]
+\cmd{/invite \param{bot} \param{\#canal}} & Comando IRC estándar. El bot se une si el remitente es admin. \volat \\
+\bottomrule
+\end{tabularx}
+
+\nota{Los DJs pueden pedir al bot que salga temporalmente con ``\bot{} sal del canal'', pero el bot se re-une automáticamente en el siguiente chequeo periódico.}
+
+% ============================================================
+\section{Reconocimiento del nick}
+% ============================================================
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!nickmode strict} & Solo reconoce el nick exacto del bot (case-insensitive substring). \persiste \\[0.3em]
+\cmd{!nickmode loose} & Reconoce también aliases configurados con word-boundary matching. \persiste \\[0.3em]
+\cmd{!nickalias add \param{alias}} & Añade un alias (se guarda en minúsculas). \volat \\[0.3em]
+\cmd{!nickalias remove \param{alias}} & Elimina un alias. \volat \\[0.3em]
+\cmd{!nickalias show} & Muestra aliases actuales y modo. \\[0.3em]
+\cmd{!nickalias save} & Guarda aliases y modo en el JSON. \persiste \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Saludos}
+% ============================================================
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!set\_saludo\_cooldown \param{seg}} & Cambia el cooldown entre saludos (en segundos, entero $\geq 0$). \persiste \\[0.3em]
+\cmd{!get\_saludo\_cooldown} & Muestra el cooldown actual. \\
+\bottomrule
+\end{tabularx}
+
+\nota{El cooldown evita que el bot entre en bucle de saludos con otros bots. Valor por defecto: 20 segundos. La configuración de \texttt{saluda} (lista de canales o \texttt{si}/\texttt{no}) se gestiona editando el JSON y recargando con \cmd{!reconfigura}.}
+
+% ============================================================
+\section{Mensajes programados}
+% ============================================================
+
+Todos los comandos se ejecutan por \textbf{PM}.
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!mensaje} & Inicia un \textbf{asistente interactivo} para crear un mensaje programado. Pide: intervalo (minutos), hora inicio/fin (HH:MM), fechas opcionales y texto. \persiste \\[0.3em]
+\cmd{!vermensaje} & Muestra todos los mensajes programados (intervalo, rango, fechas, texto, creador). \\[0.3em]
+\cmd{!eliminarmensaje} & Muestra lista numerada y permite elegir cuál borrar. \persiste \\[0.3em]
+\cmd{!agregacanalmensaje \param{\#canal}} & Añade un canal a la lista de destinos para mensajes programados. \volat \\[0.3em]
+\cmd{!vercanalesmensaje} & Muestra los canales que reciben mensajes programados. \\[0.3em]
+\cmd{!eliminacanalmensaje \param{\#canal}} & Elimina un canal de la lista de destinos. \volat \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Otros comandos}
+% ============================================================
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Descripción} \\
+\midrule
+\cmd{!repite \param{mensaje}} & Retransmite el texto a todos los canales. Solo por PM. \volat \\[0.3em]
+\cmd{!help} [\param{grupo}] & Muestra grupos de ayuda. Admins ven: \texttt{general}, \texttt{peticiones}, \texttt{dj}, \texttt{admin}, \texttt{ia}, \texttt{history}. \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Notificaciones automáticas}
+% ============================================================
+
+El bot notifica automáticamente por PM al admin principal (\texttt{hexadecimal}) cuando ocurren errores de IA, con un cooldown de 10 minutos entre notificaciones. Los detalles de errores se registran en \texttt{logs/}.
+
+% ============================================================
+\section{Arquitectura y archivos}
+% ============================================================
+
+\begin{multicols}{2}
+\small
+
+\textbf{Código fuente}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \texttt{bot3.py} — bot principal
+  \item \texttt{ai\_api.py} — API de IA (Ollama + Gemini)
+  \item \texttt{config\_utils.py} — lectura/escritura JSON
+  \item \texttt{saluda\_utils.py} — normalización de saludos
+  \item \texttt{bot\_history.py} — gestión de historiales
+  \item \texttt{google\_api.py} — API de modelos Google
+  \item \texttt{horoscopos.py} — horóscopo del día
+\end{itemize}
+
+\columnbreak
+
+\textbf{Archivos de configuración}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \texttt{*.json} — config por instancia del bot
+  \item \texttt{autorizados.json} — lista de DJs
+  \item \texttt{*\_mensajes\_programados.json}
+  \item \texttt{google\_models.json} — caché de modelos
+  \item \texttt{histories/} — historiales persistidos
+  \item \texttt{logs/} — logs de errores de IA
+\end{itemize}
+
+\end{multicols}
+
+\textbf{Instancias activas:} cada bot (\texttt{c3pO}, \texttt{R3}, etc.) tiene su propio archivo JSON de configuración. Todos comparten el mismo código fuente (\texttt{bot3.py}).
+
+% ============================================================
+\section{Referencia rápida}
+% ============================================================
+
+\begin{multicols}{2}
+\footnotesize
+
+\textbf{Configuración}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!reconfigura} — recargar JSON
+  \item \cmd{!showconfig} — ver config activa
+  \item \cmd{!check} — verificar canales
+\end{itemize}
+
+\textbf{IA}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!ia status|on|off} [\param{canal}]
+  \item \cmd{!setmodel} \param{modelo}
+  \item \cmd{!listmodels} / \cmd{!showmodels}
+  \item \cmd{!econmodel} — modelo económico
+\end{itemize}
+
+\textbf{Prompt}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!prompt show|set|add|del}
+  \item \cmd{!prompt reset|save}
+\end{itemize}
+
+\textbf{Historiales}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!gethistory} / \cmd{!showhistory}
+  \item \cmd{!clearhistory} [\param{canal}|all]
+  \item \cmd{!whitelist} add|remove|show|save
+  \item \cmd{!history config} get|set
+\end{itemize}
+
+\textbf{DJs}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!lista} / \cmd{!agrega} / \cmd{!borra}
+  \item \cmd{!guardalista} / \cmd{!leelista}
+\end{itemize}
+
+\columnbreak
+
+\textbf{Canales}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!join} \param{\#canal} — temporal
+  \item \cmd{!addcanal} \param{\#canal} — persistente
+  \item \cmd{!leave} \param{\#canal} — persistente
+  \item \cmd{/invite} \param{bot} — temporal
+\end{itemize}
+
+\textbf{Nick}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!nickmode} strict|loose
+  \item \cmd{!nickalias} add|remove|show|save
+\end{itemize}
+
+\textbf{Saludos}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!set\_saludo\_cooldown} \param{seg}
+  \item \cmd{!get\_saludo\_cooldown}
+\end{itemize}
+
+\textbf{Mensajes programados}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!mensaje} — asistente interactivo
+  \item \cmd{!vermensaje} / \cmd{!eliminarmensaje}
+  \item \cmd{!agregacanalmensaje} \param{\#canal}
+  \item \cmd{!vercanalesmensaje}
+  \item \cmd{!eliminacanalmensaje} \param{\#canal}
+\end{itemize}
+
+\textbf{Otros}
+\begin{itemize}[nosep,leftmargin=1em]
+  \item \cmd{!repite} \param{msg} — broadcast
+  \item \cmd{!help} [\param{grupo}] — ayuda
+\end{itemize}
+
+\end{multicols}
+
+\end{document}
