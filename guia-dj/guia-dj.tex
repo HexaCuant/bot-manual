@@ -14,8 +14,10 @@
 \usepackage{tabularx}
 \usepackage{multicol}
 \usepackage{microtype}
+\usepackage{tikz}
 
 \geometry{margin=2cm, top=2.5cm, bottom=2.5cm}
+\setlength{\parindent}{0pt}
 
 % --- Colores ---
 \definecolor{cmdcolor}{HTML}{2E86C1}
@@ -23,9 +25,13 @@
 \definecolor{notecolor}{HTML}{7D3C98}
 \definecolor{sectioncolor}{HTML}{1A5276}
 \definecolor{warncolor}{HTML}{C0392B}
+\definecolor{sectionbg}{HTML}{D6EAF8}
 
 % --- Formato de secciones ---
-\titleformat{\section}{\Large\bfseries\color{sectioncolor}}{}{0em}{}[\titlerule]
+\titleformat{\section}{\Large\bfseries\color{sectioncolor}}{}{0em}{%
+  \tikz[overlay]\fill[sectionbg, rounded corners=2pt]
+    (-2pt,-3pt) rectangle (\textwidth+2pt,\baselineskip+2pt);%
+}
 \titleformat{\subsection}{\large\bfseries\color{sectioncolor!80}}{}{0em}{}
 
 % --- Comando para formatear comandos ---
@@ -225,6 +231,7 @@ Como DJ autorizado, el bot acepta tus mensajes privados. Los usuarios normales n
 La mayoría de los comandos de gestión (\cmd{!petlista}, \cmd{!suena}, \cmd{!elimina}, \cmd{!ignora}, etc.) se ejecutan por PM para no saturar el canal.
 
 % ============================================================
+\newpage
 \section{Referencia rápida}
 % ============================================================
 
