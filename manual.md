@@ -160,7 +160,9 @@ El comando `!info` muestra información sobre el DJ que está emitiendo, el esta
 
 ### !join [canal]
 
-El comando `!join [canal]` permite a los administradores del bot indicarle que se una a un canal cualquiera. No es necesario que el administrador se encuentre en ese canal ni que tenga privilegios en él y si el canal no existe se creará uno temporal en el que el bot será el moderador al ser el usuario que crea el canal.
+El comando `!join [canal]` permite a los administradores del bot indicarle que se una a un canal cualquiera de forma **temporal**. El bot entrará en el canal pero no lo guardará en la configuración; al reiniciar, no volverá a ese canal salvo que esté en la lista de canales del JSON.
+
+Para unirse de forma **persistente** (que sobreviva reinicios), usar `!addcanal`. Para abandonar un canal de forma persistente, usar `!leave`.
 
 ## Comandos para admistradores del bot
 
@@ -269,6 +271,16 @@ Los valores se almacenan en el archivo de configuración del bot:
 
 Estos valores se cargan al arrancar y también se recargan con `!reconfigura`.
 
+### Gestión de canales (administradores)
+
+Los administradores disponen de tres niveles de control sobre los canales:
+
+- `!join <canal>` — une al bot a un canal de forma **temporal**. No se guarda en la configuración; al reiniciar, el bot no volverá a ese canal.
+- `!addcanal <canal>` — une al bot a un canal y lo **guarda en la configuración** JSON. **Persistente**: el bot volverá a unirse a ese canal tras reiniciar.
+- `!leave <canal>` — el bot abandona el canal y lo **elimina de la configuración** JSON. **Persistente**: el bot no volverá a entrar en ese canal hasta que se añada de nuevo con `!addcanal` o se edite el JSON manualmente.
+
+Además, el comando `[bot] sal del canal` (accesible a DJs) hace que el bot abandone un canal de forma temporal — se re-unirá en el siguiente chequeo periódico. Para una salida permanente, usar `!leave`.
+
 ### Comandos de prompt de sistema (administradores)
 
 Los administradores pueden gestionar el prompt de sistema que se antepone a cada petición de IA. El prompt es una lista de líneas y admite el marcador `{nickname}` que se sustituye por el nick del bot.
@@ -320,7 +332,7 @@ radio: https://zeno.fm/radio/el_desvan_musical_radio/
 	- `ia`: comandos para IA (p. ej. `!ia on`, `!ia off`)
 	- `prompt`: comandos para gestionar el prompt de sistema (p. ej. `!prompt show`, `!prompt set`)
 	- `history`: comandos para historial (p. ej. `!gethistory`, `!history config`)
-	- `admin`: comandos exclusivamente para administradores (p. ej. `!setmodel`, `!set_saludo_cooldown`, `!nickmode`, `!nickalias`, `!showconfig`)
+	- `admin`: comandos exclusivamente para administradores (p. ej. `!setmodel`, `!set_saludo_cooldown`, `!nickmode`, `!nickalias`, `!addcanal`, `!leave`, `!showconfig`)
 
 Ejemplo de uso:
 
@@ -407,13 +419,13 @@ Permite a los administradores eliminar un canal de la lista de canales donde se 
 
 ### Invitar al bot a que se una a otro canal
 
-Cualquier nick en la lista de DJ autorizados puede enviar una invitación al bot para que se una a otro canal. El bot se unirá al canal y enviará un mensaje de saludo al nuevo canal.
+Los administradores pueden enviar una invitación al bot para que se una a otro canal. El bot se unirá al canal y enviará un mensaje de saludo al nuevo canal. La unión es **temporal** (no se guarda en la configuración).
 
 Para enviar una invitación al bot debe ejecutar el comando `/invite` seguido del nick del bot desde el canal al que se quiere invitar.
 
-Este comando no es exclusivo del bot sino que se trata de un comando del IRC. El bot solo está programado para aceptarlo si se envía desde un nick autorizado. Al tratarse de un comando del IRC es posible que el nick necesite ser moderador del canal al que invita al bot, o tener algún otro tipo de privilegios en ese canal.
+Este comando no es exclusivo del bot sino que se trata de un comando del IRC. Al tratarse de un comando del IRC es posible que el nick necesite ser moderador del canal al que invita al bot, o tener algún otro tipo de privilegios en ese canal.
 
-Los administradores del bot pueden saltarse estas restricciones del IRC usando el comando `!join` descrito anteriormente.
+Los administradores del bot pueden saltarse estas restricciones del IRC usando el comando `!join` o `!addcanal` (persistente) descritos anteriormente.
 
 ### !emito
 

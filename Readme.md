@@ -177,4 +177,8 @@ y se pueden añadir palabra extra.
 
 ### Comandos de administradores
 
-!join [canal] (hace que el bot se una a un canal, solo administradores)
+!join [canal] (hace que el bot se una a un canal de forma temporal, solo administradores)
+
+!addcanal [canal] (añade un canal a la config y se une, persistente entre reinicios)
+
+!leave [canal] (abandona un canal y lo elimina de la config, persistente entre reinicios)

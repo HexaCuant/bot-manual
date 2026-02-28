@@ -168,8 +168,8 @@ Para gestionar usuarios problemáticos durante la emisión:
 \toprule
 \textbf{Comando} & \textbf{Descripción} \\
 \midrule
-\cmd{/invite \param{bot} \param{canal}} & Invita al bot al canal (comando IRC estándar). Necesitas ser moderador del canal destino. \\[0.3em]
-\bot{} \cmd{sal del canal} & El bot abandona el canal actual. Es temporal: se re-une en el siguiente chequeo periódico o PING. \\[0.3em]
+\cmd{/invite \param{bot} \param{canal}} & Invita al bot al canal (comando IRC est\'{a}ndar). Solo administradores. \\[0.3em]
+\bot{} \cmd{sal del canal} & El bot abandona el canal actual. Es temporal: se re-une en el siguiente chequeo peri\'{o}dico o PING. Para abandonar de forma permanente, un admin debe usar \cmd{!leave}. \\[0.3em]
 \bot{} \cmd{recarga} & El bot se desconecta del IRC. El crontab lo reinicia automáticamente en $\sim\!1$~minuto. Se puede añadir texto extra, ej.\ ``\texttt{c3pO salte a recargar un momento}''. \\
 \bottomrule
 \end{tabularx}
