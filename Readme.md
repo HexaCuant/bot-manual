@@ -77,13 +77,13 @@ y se pueden añadir palabra extra.
 
 !ia off [canal] (desactiva respuestas IA en el canal especificado o el actual)
 
-!setmodel [modelo] (selecciona el modelo IA a utilizar, ej: gemini-2.0-flash)
+!setmodel [modelo] (selecciona el modelo IA a utilizar, ej: ollama:ministral-3:8b-cloud, models/gemini-2.5-flash)
 
 !listmodels (descarga y guarda la lista de modelos disponibles de Google)
 
 !showmodels (muestra los modelos guardados en google_models.json)
 
-!econmodel (muestra información sobre el modelo económico en uso)
+!econmodel (selecciona automáticamente y aplica un modelo económico de bajo coste)
 
 !gethistory [maxLines] [canal|PM:nick|all] (muestra el historial de conversaciones)
 
@@ -95,11 +95,43 @@ y se pueden añadir palabra extra.
 
 !history config set [opción] [valor] (configura la persistencia de históricos)
 
-!help [grupo] (muestra ayuda contextual por grupos: general, peticiones, dj, admin, ia, history)
+!help [grupo] (muestra ayuda contextual por grupos: general, dj, ia, prompt, history, admin)
 
 !ayuda [grupo] (alias de !help)
 
 [bot] [mensaje] (si el mensaje contiene el nick del bot, responde usando IA)
+
+### Comandos de prompt de sistema
+
+!prompt show (muestra las líneas actuales del prompt de sistema)
+
+!prompt set [texto] (reemplaza todo el prompt por una única línea)
+
+!prompt add [texto] (añade una nueva línea al final del prompt)
+
+!prompt del [N] (elimina la línea número N del prompt)
+
+!prompt reset (restaura el prompt de sistema a los valores por defecto)
+
+!prompt save (guarda el prompt actual en el archivo de configuración)
+
+### Comandos de configuración de saludos
+
+!set_saludo_cooldown [segundos] (cambia y guarda el cooldown de saludos)
+
+!get_saludo_cooldown (muestra el cooldown actual de saludos)
+
+### Comandos de reconocimiento del nick (administradores)
+
+!nickmode strict|loose (cambia el modo de reconocimiento del nick: strict=solo nick exacto, loose=nick + aliases con word-boundary)
+
+!nickalias show (muestra los aliases configurados)
+
+!nickalias add [alias] (añade un alias al bot)
+
+!nickalias remove [alias] (elimina un alias)
+
+!nickalias save (guarda aliases y modo en la configuración)
 
 ### Comandos en privado
 
@@ -113,7 +145,7 @@ y se pueden añadir palabra extra.
 
 !agrega [Nick] (agrega DJ a lista)
 
-!reconfigura (lee archivo de configuración)
+!reconfigura (recarga la configuración en caliente: channels, saluda, ai_model, system_prompt_lines, history, DJ, limite, radio)
 
 !check (fuerza la verificación y reconexión a los canales configurados)
 
@@ -123,7 +155,7 @@ y se pueden añadir palabra extra.
 
 ### Comandos para manejo de mensajes programados
 
-!mensaje (inicia la configuración de un mensaje programado con intervalo, hora de inicio, hora de fin y texto)
+!mensaje (inicia la configuración de un mensaje programado con intervalo, hora de inicio, hora de fin, fecha inicio/fin opcionales y texto)
 
 !vermensaje (muestra todos los mensajes programados en el sistema)
 
@@ -134,24 +166,6 @@ y se pueden añadir palabra extra.
 !vercanalesmensaje (muestra la lista de canales donde se envían mensajes programados)
 
 !eliminacanalmensaje [canal] (elimina un canal de la lista de canales donde se envían mensajes programados)
-
-## IA y Configuración Avanzada
-
-!ia on/off (Activa o desactiva las respuestas de IA en el canal actual)
-
-!setmodel [modelo] (Cambia el modelo de IA en uso)
-
-!listmodels (Descarga y guarda la lista de modelos de Google)
-
-!showmodels (Muestra los modelos guardados)
-
-!set_saludo_cooldown [segundos] (Cambia el tiempo de espera entre saludos)
-
-!get_saludo_cooldown (Muestra el tiempo de espera de saludos actual)
-
-!showconfig (Muestra la configuración actual del bot)
-
-!gethistory [maxLines] [canal|PM:nick|all] (Muestra el historial de chat)
 
 ## creador del bot
 
