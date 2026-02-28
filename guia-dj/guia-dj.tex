@@ -15,6 +15,7 @@
 \usepackage{multicol}
 \usepackage{microtype}
 \usepackage{tikz}
+\usepackage{needspace}
 
 \geometry{margin=2cm, top=2.5cm, bottom=2.5cm}
 \setlength{\parindent}{0pt}
@@ -29,10 +30,13 @@
 
 % --- Formato de secciones ---
 \titleformat{\section}{\Large\bfseries\color{sectioncolor}}{}{0em}{%
+  \needspace{5\baselineskip}%
   \tikz[overlay]\fill[sectionbg, rounded corners=2pt]
     (-2pt,-3pt) rectangle (\textwidth+2pt,\baselineskip+2pt);%
 }
-\titleformat{\subsection}{\large\bfseries\color{sectioncolor!80}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries\color{sectioncolor!80}}{}{0em}{%
+  \needspace{3\baselineskip}%
+}
 
 % --- Comando para formatear comandos ---
 \newcommand{\cmd}[1]{\texttt{\color{cmdcolor}\bfseries #1}}
@@ -243,7 +247,6 @@ Como DJ autorizado, el bot acepta tus mensajes privados. Los usuarios normales n
 La mayoría de los comandos de gestión (\cmd{!petlista}, \cmd{!suena}, \cmd{!elimina}, \cmd{!ignora}, etc.) se ejecutan por PM para no saturar el canal.
 
 % ============================================================
-\newpage
 \section{Referencia rápida}
 % ============================================================
 
