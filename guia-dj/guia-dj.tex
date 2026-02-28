@@ -222,6 +222,17 @@ En los canales donde la IA está activada, puedes interactuar con el bot mencion
 
 \nota{Los DJs no pueden configurar la IA (modelo, prompt, canales). Esos ajustes son exclusivos de administradores.}
 
+\subsection{Detección del nick del bot}
+
+El bot puede funcionar en dos modos de detección de su nick:
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Modo estricto} (por defecto): solo responde si el mensaje contiene exactamente su nick (ej.\ \texttt{c3pO}).
+  \item \textbf{Modo relajado}: responde también a variaciones del nick y a alias configurados. Por ejemplo, \texttt{c3po}, \texttt{C3PO} o un alias como \texttt{cetrés} podrían activar al bot.
+\end{itemize}
+
+El modo activo lo configura un administrador con \cmd{!nickmode}. Si notas que el bot responde a mensajes que no iban dirigidos a él, o al contrario, que no responde cuando lo mencionas, puede deberse a este ajuste.
+
 % ============================================================
 \section{Mensajes privados (PM)}
 % ============================================================
