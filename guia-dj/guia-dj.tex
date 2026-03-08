@@ -137,7 +137,7 @@ Todos estos comandos se ejecutan \textbf{por PM} al bot.
 \textbf{Comando} & \textbf{Descripción} \\
 \midrule
 \cmd{!petlista} & Muestra la lista de peticiones pendientes (numeradas). \\[0.3em]
-\cmd{!suena \param{N}} & Anuncia la petición número $N$ como ``Está sonando\ldots'' en todos los canales y la elimina de la cola. \\[0.3em]
+\cmd{!suena \param{N}} & Anuncia la petición número $N$ como ``Está sonando\ldots'' en todos los canales y la elimina de la cola. \textcolor{red}{Este comando ayuda tanto a los DJs como a los oyentes. Para los DJs el bot se da por enterado de que esa petición ya se ha emitido y la borra de la lista de peticiones pendientes, y para los oyentes, saben qué está sonando y por qué petición se va emitiendo, por lo que pueden saber cuánto falta para la suya.} \\[0.3em]
 \cmd{!elimina \param{N}} & Elimina la petición número $N$ de la cola de forma silenciosa (sin anuncio público). \\[0.3em]
 \cmd{!recuento} & Muestra el recuento de peticiones por usuario. \\
 \bottomrule
@@ -179,7 +179,7 @@ Para gestionar usuarios problemáticos durante la emisión:
 \toprule
 \textbf{Comando} & \textbf{Descripción} \\
 \midrule
-\bot{} \cmd{sal del canal} & El bot abandona el canal actual. Es temporal: se re-une en el siguiente chequeo peri\'{o}dico o PING. Para abandonar de forma permanente, un admin debe usar \cmd{!leave}. \\[0.3em]
+\bot{} \cmd{sal del canal} & El bot abandona el canal actual. Es temporal: se re-une en el siguiente chequeo peri\'{o}dico o PING. \\[0.3em]
 \bot{} \cmd{recarga} & El bot se desconecta del IRC. El crontab lo reinicia automáticamente en $\sim\!1$~minuto. Se puede añadir texto extra, ej.\ ``\texttt{c3pO salte a recargar un momento}''. \\
 \bottomrule
 \end{tabularx}

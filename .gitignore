@@ -1,0 +1,9 @@
+# Ignore LaTeX auxiliary files and workspace configs
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+
+# VS Code workspace files (local)
+*.code-workspace
